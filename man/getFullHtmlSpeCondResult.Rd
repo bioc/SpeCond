@@ -50,7 +50,7 @@ getFullHtmlSpeCondResult(SpeCondResult=generalResult, param.detection=
 ## these pages to the table result in the general html page
 specificResult=generalResult$specificResult
 genePageInfo=getGeneHtmlPage(expressionSpeCondExample, specificResult, name.index.html=
-  "index_example_SpeCond_Results.html", gene.html.ids=c(1:20))
+  "index_example_SpeCond_Results.html",outdir="Single_result_pages_example", gene.html.ids=c(1:20))
 
 ##Produce the general html page results
 getFullHtmlSpeCondResult(L.specific.result=specificResult$L.specific.result,
