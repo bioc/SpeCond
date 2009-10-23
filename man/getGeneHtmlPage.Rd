@@ -35,5 +35,5 @@ generalResult=SpeCond(expressionSpeCondExample, param.detection=NULL, multitest.
 specificResult=generalResult$specificResult
 ##Produce the Gene html page results for the first 20 genes using the specificResult object
 genePageInfo=getGeneHtmlPage(expressionSpeCondExample, specificResult, name.index.html=
-  "index_example_SpeCond_Results.html", gene.html.ids=c(1:20))
+  "index_example_SpeCond_Results.html", outdir="Single_result_pages_dir", gene.html.ids=c(1:20))
 }
