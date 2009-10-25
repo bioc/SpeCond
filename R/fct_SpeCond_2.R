@@ -409,10 +409,12 @@ createOutdir <- function(outdir = getwd(), force = FALSE){
       stop(sprintf("'%s' is not empty.", outdir))
     if(force && length(outdirContents)>0){
       unlink(paste(outdir,"/.",sep=""), recursive=TRUE)
-      print(paste("force=TRUE, Delete all files in ",outdir,sep="")) 
+      print(paste("force=TRUE, Delete all files in ",outdir,sep=""))
+      if(!file.exists(outdir)){
+        dir.create(outdir, recursive=TRUE)
+      }
     }
-    setwd(outdir)
-    
+    setwd(outdir) 
   }
   else {
     dir.create(outdir, recursive=TRUE)
