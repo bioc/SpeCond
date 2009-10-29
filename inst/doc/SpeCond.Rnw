@@ -29,7 +29,7 @@
 \pagebreak
 
 \section*{Introduction}
-This vignette presents the SpeCond package, an R package to perform gene expression data analysis detecting condition specific genes: genes highly up- or down-regulated in a small number of conditions. Conditions can be environmental conditions, different tissues, organs or any other sources that you want to compare in terms of gene expression.\\
+This vignette presents the SpeCond package, an R package which performs gene expression data analysis to detect condition-specific genes. Such genes are significantly up- or down-regulated in a small number of conditions. Conditions can be environmental conditions, different tissues, organs or any other sources that you wish to compare in terms of gene expression.\\
 SpeCond detects the condition in which a gene is specifically expressed. It does so by fitting a mixture of normal distribution to the expression values. This enables to detect outliers in the expression pattern. The main function is \Rfunction{SpeCond}, further methods as \Rfunction{writeSpeCondResult}, \Rfunction{getFullHtmlSpeCondResult} and \Rfunction{getGeneHtmlPage} produce text files and html reports.
 
 \section{The detection process in few words}
