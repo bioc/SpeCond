@@ -1,12 +1,12 @@
 Package: SpeCond
 Title: Condition specific detection from expression data
-Version: 1.1.0
+Version: 1.1.1
 Author: Florence Cavalli
 Maintainer: Florence Cavalli <florence@ebi.ac.uk>
 Date: 2009-10-13
 Depends: R (>= 2.10.0), mclust (>= 3.3.1), Biobase (>= 1.15.13), fields, hwriter (>= 1.1), RColorBrewer, methods
 Import:mclust,hwriter ,RColorBrewer, fields,methods
 Collate:allClass.R show_methods.R fct_SpeCond_2.R fct_SpeCond_visualisation.R
-Description: This package performs a gene expression data analysis detecting condition specific genes: genes highly up- or down-expressed in a few number of conditions. It does so by fitting a mixture of normal distributions to the expression values. Conditions can be environmental conditions, different tissues, organs or any other sources that you want to compare in terms of gene expression.
-License: LGPL (>=2)
+Description: This package performs a gene expression data analysis to detect condition specific genes: genes highly up- or down-regulated in a small number of conditions. It does so by fitting a mixture of normal distributions to the expression values. Conditions can be environmental conditions, different tissues, organs or any other sources that you want to compare in terms of gene expression.
+License: LGPL (>=2), mclust LICENSE is required
 biocViews: Microarray, DifferentialExpression, Bioinformatics, MultipleComparisons, Clustering, ReportWriting
