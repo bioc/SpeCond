@@ -8,5 +8,5 @@ Depends: R (>= 2.10.0), mclust (>= 3.3.1), Biobase (>= 1.15.13), fields, hwriter
 Import:mclust,hwriter ,RColorBrewer, fields,methods
 Collate:allClass.R show_methods.R fct_SpeCond_2.R fct_SpeCond_visualisation.R
 Description: This package performs a gene expression data analysis to detect condition-specific genes. Such genes are significantly up- or down-regulated in a small number of conditions. It does so by fitting a mixture of normal distributions to the expression values. Conditions can be environmental conditions, different tissues, organs or any other sources that you wish to compare in terms of gene expression.
-License: LGPL (>=2), mclust LICENSE is required
+License: LGPL (>=2)
 biocViews: Microarray, DifferentialExpression, Bioinformatics, MultipleComparisons, Clustering, ReportWriting
