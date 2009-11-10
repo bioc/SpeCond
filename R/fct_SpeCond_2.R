@@ -403,17 +403,9 @@ createOutdir <- function(outdir = getwd(), force = FALSE){
       stop(sprintf("'%s' must be a directory.", outdir))
     
     outdirContents = dir(outdir, all.files = TRUE)
-    outdirContents = setdiff(outdirContents, c(".", ".."))
-    
-    if(!force && length(outdirContents)>0)
-      stop(sprintf("'%s' is not empty.", outdir))
-    if(force && length(outdirContents)>0){
-      unlink(paste(outdir,"/.",sep=""), recursive=TRUE)
-      print(paste("force=TRUE, Delete all files in ",outdir,sep=""))
-      if(!file.exists(outdir)){
-        dir.create(outdir, recursive=TRUE)
-      }
-    }
+    if(length(outdirContents)>0){
+      print(paste(outdir,"is not empty."))
+    }    
     setwd(outdir) 
   }
   else {
