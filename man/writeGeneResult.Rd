@@ -5,8 +5,8 @@
  \code{writeGeneResult} produces a text file containing the list of gene, if they have been detected as tissue-specific or not (S/N), for how many tissues in total, how many tissue as up-regulated, how many tissue as down-regulated, in which tissues for up-regulated and down-regulated.
 }
 \usage{
-writeGeneResult(L.specific.result, file.name.result.gene = "gene_summary_result.txt",
-gene.names = NULL)
+writeGeneResult(L.specific.result, file.name.result.gene =
+ "gene_summary_result.txt", gene.names = NULL)
 }
 \arguments{
  \item{L.specific.result}{the \code{L.specific.result} list of the included in the result of the main \code{SpeCond} function: generalResult$specificResult$L.specific.result}
@@ -19,10 +19,13 @@ gene.names = NULL)
 library(SpeCond)
 data(expressionSpeCondExample)
 ##Perform the condition specific detection analysis with SpeCond()
-generalResult=SpeCond(expressionSpeCondExample, param.detection=NULL, multitest.correction.method="BY",
-  prefix.file="E", print.hist.pv=TRUE, fit1=NULL, fit2=NULL, specificOutlierStep1=NULL)
+generalResult=SpeCond(expressionSpeCondExample, 
+  param.detection=NULL, multitest.correction.method="BY", prefix.file="E", 
+  print.hist.pv=TRUE, fit1=NULL, fit2=NULL, specificOutlierStep1=NULL)
 specificResult=generalResult$specificResult
+
 ##write the result file
 writeGeneResult(specificResult$L.specific.result, file.name.result.gene=
-  "Example_gene_summary_result.txt", gene.names=rownames(expressionSpeCondExample)[1:10])
+  "Example_gene_summary_result.txt", gene.names=
+   rownames(expressionSpeCondExample)[1:10])
 }

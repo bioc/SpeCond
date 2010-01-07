@@ -283,7 +283,7 @@ writeGeneResult <- function(L.specific.result,file.name.result.gene="gene_summar
 }
 
 ## Create the full experiment result html file
-getFullHtmlSpeCondResult<- function(SpeCondResult=NULL, L.specific.result=NULL, param.detection=NULL, page.name="SpeCond_result", page.title="Condition-specific analysis results", prefix.file=NULL, outdir="General_Result", force=TRUE, sort.condition="all", gene.page.info=NULL, heatmap.profile=TRUE, heatmap.expression=FALSE, heatmap.unique.profile=FALSE, expressionMatrix=NULL){
+getFullHtmlSpeCondResult<- function(SpeCondResult=NULL, L.specific.result=NULL, param.detection=NULL, page.name="SpeCond_result", page.title="Condition-specific analysis results", prefix.file=NULL, outdir="General_Result", sort.condition="all", gene.page.info=NULL, heatmap.profile=TRUE, heatmap.expression=FALSE, heatmap.unique.profile=FALSE, expressionMatrix=NULL){
 
   nb_table=1
   nb_figure=1
@@ -303,7 +303,7 @@ getFullHtmlSpeCondResult<- function(SpeCondResult=NULL, L.specific.result=NULL, 
   p=openPage(paste(prefix.file,"_",page.name,".html",sep=""))
   message(sprintf("The full result html page '%s' will be created in the current directory '%s'",paste(prefix.file,"_",page.name,".html",sep=""),getwd()))
 
-  createOutdir(outdir,force)
+  createOutdir(outdir)
 
   if(!is.null(SpeCondResult) && !is(SpeCondResult,"sp_list")){
     stop("Error, the SpeCondResult attribute must be of type sp_list (i.e output of the SpeCond function)")

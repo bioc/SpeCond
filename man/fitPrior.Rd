@@ -10,7 +10,8 @@ beta = 6, evaluation.lambda.beta = FALSE)
 }
 \arguments{
   \item{expressionMatrix}{the expression value matrix, genes*conditions}
-  \item{param.detection}{the matrix of parameters as obtained by \code{getDefaultParameter} or \code{createParamterMatrix}. It must contain positive values for "lambda" and "beta". If NULL, the function \code{getDefaultParameter} will be used}
+  \item{param.detection}{the matrix of parameters as obtained by \code{getDefaultParameter} or 
+  \code{createParamterMatrix}. It must contain positive values for "lambda" and "beta". If NULL, the function \code{getDefaultParameter} will be used}
   \item{lambda}{positive value, it influences the choice of models by affecting the selection of one, two or three normal distributions, thus introducing some weight on the effect of number of parameters to be defined. The default is 1, the model uses the BIC value taking into account the log-likelihood value}
   \item{beta}{positive value, it  influences the prior applied during the determination of the variance of the normal distributions. It is important for this fitting since it allows the model to capture isolated outliers. The default value is 6}
   \item{evaluation.lambda.beta}{if TRUE, an extra attribute will be return indicating for how many gene the lambda and beta parameters change the number of normal component chosen to fit the expression values}
@@ -35,5 +36,6 @@ param.detection
 
 fit1=fitPrior(expressionSpeCondExample, param.detection=param.detection)
 
-##then use getSpecificOutliersStep1(), fitNoPriorWithExclusion() and getSpecificResult()
+##then use getSpecificOutliersStep1(), fitNoPriorWithExclusion() and 
+getSpecificResult()
 }

@@ -44,6 +44,7 @@ pv.1=pv.2
 param.detection2=createParameterMatrix(mlk.1=10)
 param.detection2
 ## Modify param.detection2 with mlk.1 value to 15 and rsd.2 value to 0.2
-param.detection2B=createParameterMatrix(param.detection=param.detection2, mlk.1=10, rsd.2=0.2)
+param.detection2B=createParameterMatrix(param.detection=param.detection2,
+mlk.1=10, rsd.2=0.2) 
 param.detection2B
 }

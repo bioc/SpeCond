@@ -13,7 +13,8 @@ prefix.file = NULL, print.hist.pv = FALSE)
   \item{expressionMatrix}{the gene expression matrix (genes * conditions)}
   \item{fit2}{The result of \code{fitNoPriorWithExclusion} containing the parameter of the mixture normal model of the expression data ignoring the outliers detected in the first step of the procedure}
   \item{param.detection}{the parameter for the detection, a vector with the names ("per","md","mlk","rsd","pv") or the second row of the matrix obtained by \code{getDefaultParameter} or \code{createParameterMatrix}}
-  \item{specificOutlierStep1}{the list of outliers detected by the first step procedure, result of the \code{getSpecificOtuliersStep1} function}
+  \item{specificOutlierStep1}{the list of outliers detected by the first step procedure, result of the 
+  \code{getSpecificOtuliersStep1} function}
   \item{multitest.correction.method}{the multitest correction method. The default is "BY", for the possible values see \code{p.adjust}}
   \item{prefix.file}{a prefix added to the generated file. The default is NULL but as to be set. It is useful to change the prefix when you perform a new analysis. As you may want to compare the results with different parameters set}
   \item{print.hist.pv}{ a logical (TRUE/FALSE) whether to print in a pdf file the (non-adjusted) p-value histogram; the default is FALSE}
@@ -47,12 +48,12 @@ param.detection
 
 fit1=fitPrior(expressionSpeCondExample, param.detection=param.detection)
 
-specificOutlierStep1=getSpecificOutliersStep1(expressionSpeCondExample, fit=fit1$fit1,
- param.detection, multitest.correction.method="BY", prefix.file="run1_Step1",
- print.hist.pv=FALSE)
+specificOutlierStep1=getSpecificOutliersStep1(expressionSpeCondExample, 
+ fit=fit1$fit1, param.detection, multitest.correction.method="BY",
+ prefix.file="run1_Step1", print.hist.pv=FALSE)
 
-fit2=fitNoPriorWithExclusion(expressionSpeCondExample, specificOutlierStep1=specificOutlierStep1,
-  param.detection=param.detection)
+fit2=fitNoPriorWithExclusion(expressionSpeCondExample, 
+       specificOutlierStep1=specificOutlierStep1, param.detection=param.detection)
 
 specificResult=getSpecificResult(expressionSpeCondExample, fit=fit2,
   specificOutlierStep1=specificOutlierStep1, param.detection, 

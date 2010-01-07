@@ -396,7 +396,7 @@ changeColorClassification <- function(M_col){
 }
 
 ##Creation of the outdir directory
-createOutdir <- function(outdir = getwd(), force = FALSE){
+createOutdir <- function(outdir = getwd()){
 
   if(file.exists(outdir)){
     if(!file.info(outdir)$isdir)
@@ -467,7 +467,7 @@ getProfile <- function(M.specific){
   return(L.specific)
 }
 
-getGeneHtmlPage <- function(expressionMatrix,specificResult,name.index.html="index.html",prefix.file=NULL, outdir="Single_result_pages", force=TRUE,gene.html=NULL,gene.html.ids=c(1:10)){
+getGeneHtmlPage <- function(expressionMatrix,specificResult,name.index.html="index.html",prefix.file=NULL, outdir="Single_result_pages",gene.html=NULL,gene.html.ids=c(1:10)){
 
   ## specificResult contains:
 ##   names(specificResult)=c("prfix.file","fit","param.detection","L.specific.result","L.null","L.mlk","L.rsd","identic.row.ids")
@@ -524,7 +524,7 @@ getGeneHtmlPage <- function(expressionMatrix,specificResult,name.index.html="ind
     closePage(p)
     index.html.link=paste(getwd(),"/",name.index.html,sep="")
 
-    createOutdir(outdir,force)
+    createOutdir(outdir)
     print(paste("The gene html page(s) will be created in the ",outdir," directory",sep=""))
 
     l=sapply(1:nrow(expressionMatrix), function(i) createSingleGeneHtmlPage(index.html.link,prefix.file,i,row.names(expressionMatrix)[i],expressionMatrix[i,],specificResult$param.detection,specificResult$fit[[i]],specificResult$L.specific.result$specific[i],specificResult$fit[[i]]$NorMixParam,M_class_col[i,],specificResult$L.specific.result$M.specific.all[i,],specificResult$L.specific.result$L.pv[[i]],specificResult$L.null[[i]],specificResult$L.mlk[[i]],specificResult$L.rsd[[i]],n_link=n_link))
@@ -546,7 +546,7 @@ getGeneHtmlPage <- function(expressionMatrix,specificResult,name.index.html="ind
     closePage(p)
     index.html.link=paste(getwd(),"/",name.index.html,sep="")
     
-    createOutdir(outdir,force)
+    createOutdir(outdir)
     print(paste("The gene html page(s) will be created in the ",outdir," directory",sep=""))
 
     l=sapply(1:length(gene.html.ids), function(i) createSingleGeneHtmlPage(index.html.link,prefix.file,i,row.names(expressionMatrix)[gene.html.ids[i]],expressionMatrix[gene.html.ids[i],],specificResult$param.detection,specificResult$fit[[gene.html.ids[i]]],specificResult$L.specific.result$specific[gene.html.ids[i]],specificResult$fit[[gene.html.ids[i]]]$NorMixParam,M_class_col[gene.html.ids[i],],specificResult$L.specific.result$M.specific.all[gene.html.ids[i],],specificResult$L.specific.result$L.pv[[gene.html.ids[i]]],specificResult$L.null[[gene.html.ids[i]]],specificResult$L.mlk[[gene.html.ids[i]]],specificResult$L.rsd[[gene.html.ids[i]]],n_link=n_link))
