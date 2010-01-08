@@ -37,5 +37,5 @@ param.detection
 fit1=fitPrior(expressionSpeCondExample, param.detection=param.detection)
 
 ##then use getSpecificOutliersStep1(), fitNoPriorWithExclusion() and 
-getSpecificResult()
+## getSpecificResult()
 }
