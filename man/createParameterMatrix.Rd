@@ -38,7 +38,7 @@ md.1=md.2
 per.1<=per.2
 pv.1=pv.2
 }
-\seealso{getDefaultParameter}
+\seealso{ \code{getDefaultParameter}}
 \examples{
 ##Get the default parameters and changing the mlk.1 value to 10:
 param.detection2=createParameterMatrix(mlk.1=10)

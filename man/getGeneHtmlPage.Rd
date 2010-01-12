@@ -35,7 +35,7 @@ generalResult=SpeCond(expressionSpeCondExample, param.detection=NULL,
  fit2=NULL, specificOutlierStep1=NULL)
 specificResult=generalResult$specificResult
 ##Produce the Gene html page results for the first 20 genes using the specificResult 
-object
+##object
 genePageInfo=getGeneHtmlPage(expressionSpeCondExample, specificResult, 
  name.index.html="index_example_SpeCond_Results.html", outdir=
  "Single_result_pages_dir", gene.html.ids=c(1:20))

@@ -25,8 +25,7 @@ A list of size the number of rows (genes) in the expressionMatrix. If the gene h
 Frist essential method to obtain the matrix of expression value from your ExpressionSet to apply the SpeCond procedure step by step using the following function \code{fitPrior}, \code{fitNoPriorwithExclusion}, \code{getSpecificOutliersStep1}, \code{getSpecificResult}. The returned matrix will be the expressionMatrix argument of the above function
 }
 \author{Florence Cavalli, florence@ebi.ac.uk}
-\seealso{ \code{fitPrior},\code{SpeCond},\code{getSpecificResult}}
-
+\seealso{ \code{fitPrior}, \code{SpeCond}, \code{getSpecificResult}}
 \examples{
 library(SpeCond)
 data(expressionSpeCondExample)

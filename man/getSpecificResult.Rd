@@ -38,7 +38,7 @@ An object of class \code{sp_list}
   \item{identic.row.ids}{row number(s) from the initial input matrix which contain identical values for all conditions. These rows are not considered in the analysis}
 }
 \author{Florence Cavalli, florence@ebi.ac.uk}
-\seealso{ \code{fitNoPriorwithExclusion},\code{SpeCond},\code{getSpecificResult}}
+\seealso{ \code{fitNoPriorwithExclusion}, \code{SpeCond}, \code{getSpecificResult}}
 \examples{
 library(SpeCond)
 data(expressionSpeCondExample)
@@ -59,5 +59,4 @@ specificResult=getSpecificResult(expressionSpeCondExample, fit=fit2,
   specificOutlierStep1=specificOutlierStep1, param.detection, 
   multitest.correction.method="BY", prefix.file="run1_Step2",
   print.hist.pv=FALSE)
-
 }
