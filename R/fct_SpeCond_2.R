@@ -891,8 +891,20 @@ getSpecific <- function(expressionMatrix,fit,param.detection,specificOutlierStep
     ##     /////////////////////                ////////////////////////
   
   ## Need to correct for multiple testing
-  M_pv=p.adjust(M_pv_i,method=multitest.correction.method)  
+  ## //
+  ## before bug (when p.adjusted accepted a matrix as input!)
+  ## M_pv=p.adjust(M_pv_i,method=multitest.correction.method)  
   
+  ## row.names(M_pv)=row.names(expressionMatrix)
+  ## colnames(M_pv)=colnames(expressionMatrix)
+  ## end before
+## //
+  
+  M_pv1=p.adjust(as.vector(M_pv_i),method=multitest.correction.method)  
+  print(dim(M_pv1))
+  print(length(M_pv1))
+  
+  M_pv=matrix(M_pv1,ncol=ncol(expressionMatrix),nrow=nrow(expressionMatrix),byrow = FALSE)
   row.names(M_pv)=row.names(expressionMatrix)
   colnames(M_pv)=colnames(expressionMatrix)
   
