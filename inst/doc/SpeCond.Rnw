@@ -50,13 +50,13 @@ The function \Rfunction{SpeCond} enables the user to perform the full analysis. 
 %\item \emph{do.logtransform}: if TRUE, the data are log transformed before the analysis, the default is FALSE
 \textbf{Example:}\\
 Note: For this vignette we will work in a temporary directory (using \Rfunction{tempdir()} as below), to limit the size of the source files. However, for your own use you should ignore it, by default the .RData and files are generated and saved in the current directory.
-<<echo=t, eval=t>>=
+<<echo=TRUE, eval=TRUE>>=
 d=tempdir()
 oldir=getwd()
 setwd(d)
 @
 Loading the library and the example dataset; an ExpressionSet and a matrix expression value:
-<<echo=t, eval=t>>=
+<<echo=TRUE, eval=TRUE>>=
 library(SpeCond)
 data(expSetSpeCondExample)
 expSetSpeCondExample
@@ -68,7 +68,7 @@ dim(Mexp)
 @
 \textbf{Perform the analysis with default parameters:}\\
 Using an expression matrix as input:\\
-<<echo=t, eval=t>>=
+<<echo=TRUE, eval=TRUE>>=
 generalResult=SpeCond(Mexp, param.detection=NULL, multitest.correction.method="BY",
   prefix.file="E", print.hist.pv=TRUE, fit1=NULL, fit2=NULL, specificOutlierStep1=NULL)
 names(generalResult)
@@ -76,14 +76,14 @@ specificResult=generalResult$specificResult
 @
 Using an ExpressionSet object as input:\\
 Specifying the \emph{condition.factor} and the \emph{condition.method} arguments to extract correctly the expression values according to the conditions, see \Rfunction{getMatrixFromExpressionSet} for details.
-<<echo=t, eval=f>>=
+<<echo=TRUE, eval=FALSE>>=
 generalResult=SpeCond(expSetSpeCondExample, param.detection=NULL, 
   multitest.correction.method="BY", prefix.file="E", print.hist.pv=TRUE, fit1=NULL,
   fit2=NULL, specificOutlierStep1=NULL, condition.factor=expSetSpeCondExample$Tissue,
   condition.method="mean")
 @
 Retreive the expression matrix used by the analysis with \Rfunction{getMatrixFronExpressionSet} and the same arguments (\emph{condition.factor} and \emph{condition.method}) used in the \Rfunction{SpeCond} function. This is necessary for the visualisation functions.
-<<echo=t, eval=f>>=
+<<echo=TRUE, eval=FALSE>>=
 MexpS=getMatrixFromExpressionSet(expSetSpeCondExample,
   condition.factor=expSetSpeCondExample$Tissue,condition.method="mean")
 @
@@ -101,7 +101,7 @@ The function \Rfunction{getFullHtmlSpeCondResult} is called with the following a
 \item \emph{page.title}: the title of the result HTML page. The default is "Condition-specific analysis results"
 \end{itemize}
 Further arguments are described in the paragraph "Visualisation, HTML pages".
-<<echo=t, eval=t>>=
+<<echo=TRUE, eval=TRUE>>=
 getFullHtmlSpeCondResult(SpeCondResult=generalResult, param.detection=
   specificResult$param.detection, page.name="Example_SpeCond_results",
   page.title="Tissue specific results", sort.condition="all", heatmap.profile=TRUE,
@@ -122,7 +122,7 @@ The function \Rfunction{getGeneHtmlPage} is called with the following arguments:
   \end{itemize}
 \textbf{Remark}: If both \emph{gene.html} and \emph{gene.html.ids} are set to NULL, the gene HTML pages for every gene in \emph{expressionMatrix} will be generated. It is possible to use \emph{gene.html} or \emph{gene.html.ids} to select a set of genes.\\
 For a given set of genes, you may wish to compare the results contained in two or more \textbf{specificResult} objects, which were derived using different parameter sets. For this reason, it is useful to change the prefix (by setting the variable \textbf{prefix.file}) as well as the name of the index file (by setting the variable \textbf{name.index.html}).
-<<echo=t, eval=t>>=
+<<echo=TRUE, eval=TRUE>>=
 genePageInfo=getGeneHtmlPage(Mexp, specificResult, name.index.html=
   "index_example_SpeCond_Results.html", gene.html.ids=c(1:20))
 @
@@ -154,12 +154,12 @@ Figure~\ref{fig-detection} presents the different detection cases. As \emph{mlk}
 \subsection{How to change the parameter values}
 The parameter's values are stored in a matrix (\emph{param.detection}). The procedure includes two steps, which are described in the following section. As a consequence each parameter can be changed to improve the detection. The first row called "Step1" and the second row "Step2" of \emph{param.detection} contain the parameters for the first and the second step of the procedure, respectively.\\
 To obtain the default parameters, use the function \Rfunction{getDefaultParameter}.
-<<echo=t, eval=t>>=
+<<echo=TRUE, eval=TRUE>>=
 param.detection=getDefaultParameter()
 param.detection
 @
 The function \Rfunction{createParameterMatrix} enables the user to create a new parameter matrix or to change value(s) from the default or a given parameter matrix. The different arguments allow to change the values in the \emph{param.detection} send as argument. If \emph{param.detection} is not specified (i.e. NULL), the default parameters will be used and then changed according to the other arguments. The different arguments are: \emph{param.detection}, \emph{beta.1}, \emph{beta.2}, \emph{lambda.1}, \emph{lambda.2}, \emph{per.1}, \emph{per.2}, \emph{md.1}, \emph{md.2}, \emph{mlk.1}, \emph{mlk.2}, \emph{rsd.1}, \emph{rsd.2}, \emph{pv.1} and \emph{pv.2}.
-<<echo=t, eval=t>>=
+<<echo=TRUE, eval=TRUE>>=
 param.detection2=createParameterMatrix(mlk.1=10)
 param.detection2
 param.detection2B=createParameterMatrix(param.detection=param.detection2, 
@@ -186,7 +186,7 @@ The procedure performed by \Rfunction{SpeCond} integrates two steps (presented i
 \end{itemize}
 Example:\\
 Change the detection parameters for the first step and apply these to the previously computed fitting:
-<<echo=t, eval=t>>=
+<<echo=TRUE, eval=TRUE>>=
 param.detection2=createParameterMatrix(param.detection, mlk.1=10)
 param.detection2
 generalResult2=SpeCond(Mexp, param.detection=param.detection2,
@@ -195,7 +195,7 @@ generalResult2=SpeCond(Mexp, param.detection=param.detection2,
   specificOutlierStep1=NULL)
 @
 Change the parameters for the second step and apply these to the result of the first step and the second fitting computed previously:
-<<echo=t, eval=t>>=
+<<echo=TRUE, eval=TRUE>>=
 param.detection3=createParameterMatrix(param.detection, rsd.2=0.2, per.2=0.2)
 param.detection3
 generalResult3=SpeCond(Mexp, param.detection=param.detection3,
@@ -216,32 +216,32 @@ As the method works with two steps it can be very useful to process step by step
 Here, we described the procedure step by step:\\
 Use the function \Rfunction{getMatrixFromExpressionSet} if your dataset is an ExpressionSet to obtain the \textbf{Mexp} matrix as presented in the ``Quick Start'' paragraph.\\
 \textbf{Step1}: get the mixture distributions fitting the expression data with a prior on the variance to catch the single outliers. Then detected the single outliers using the first row ("Step1") of the \emph{param.detection} matrix:
-<<echo=t, eval=t>>=
+<<echo=TRUE, eval=TRUE>>=
 param.detection
 fit1=fitPrior(Mexp, param.detection=param.detection)
 @
 Or specifying only \emph{lambda} and \emph{beta} values:
-<<echo=t, eval=FALSE>>=
+<<echo=TRUE, eval=FALSE>>=
 fit1=fitPrior(Mexp, lambda=param.detection[1,"lambda"], beta=param.detection[1,"beta"])
 @
 Detect the single outliers and store them in \textbf{specificOutlierStep1}.
-<<echo=t, eval=t>>=
+<<echo=TRUE, eval=TRUE>>=
 specificOutlierStep1=getSpecificOutliersStep1(Mexp, fit=fit1$fit1,param.detection,
   multitest.correction.method="BY", prefix.file="run1_Step1",
   print.hist.pv=FALSE)
 @
 \textbf{Step2}: get the second fitting ignoring the values of outliers detected in step 1, then perform the specific detection using the second row ("Step2") of the param.detection matrix:
-<<echo=t, eval=t>>=
+<<echo=TRUE, eval=TRUE>>=
 fit2=fitNoPriorWithExclusion(Mexp, specificOutlierStep1=specificOutlierStep1,
   param.detection=param.detection)
 @
 Or specifying only \emph{lambda} and \emph{beta} values: 
-<<echo=t, eval=FALSE>>=
+<<echo=TRUE, eval=FALSE>>=
 fit2=fitNoPriorWithExclusion(Mexp, specificOutlierStep1=specificOutlierStep1, 
   lambda=param.detection[2,"lambda"], beta=param.detection[2,"beta"])
 @
 Detect the condition specific for each gene and store them in \textbf{specificResult}.
-<<echo=t, eval=t>>=
+<<echo=TRUE, eval=TRUE>>=
 specificResult=getSpecificResult(Mexp, fit=fit2,
   specificOutlierStep1=specificOutlierStep1, param.detection, 
   multitest.correction.method="BY", prefix.file="run1_Step2",
@@ -294,7 +294,7 @@ The \textbf{specificResult} object is of class \textbf{sp\_list}. This list cont
 \item \emph{identic.row.ids}: row number(s) from the initial input matrix, which contain identical values for all conditions. These rows are not considered in the analysis
 \end{itemize}
 Example:
-<<echo=t, eval=t>>=
+<<echo=TRUE, eval=TRUE>>=
 names(generalResult)
 specificResult=generalResult$specificResult
 names(specificResult)
@@ -318,7 +318,7 @@ Three functions enable to write the results to text files.
 \item\Rfunction{writeGeneResult}: To write a text file containing the list of all genes from the input expression values matrix, whether they have been detected as condition specific or not (S/N), for how many conditions in total, in how many conditions as up-regulated, in how many conditions as down-regulated, in which conditions as up-regulated and down-regulated. The argument \emph{gene.names} can be used to select a subset of genes (the default is NULL).
 \end{itemize}
  All these functions use the function \Rfunction{getProfile} to obtain the profiles of the specific genes, see documentation and example below
-<<echo=t, eval=t>>=
+<<echo=TRUE, eval=TRUE>>=
 L.specific.result.profile=getProfile(specificResult$L.specific.result$M.specific)
 writeSpeCondResult(specificResult$L.specific.result,file.name.profile=
   "Example_specific_profile.txt", file.specific.gene="Example_list_specific_gene.txt",
@@ -366,11 +366,11 @@ In this section, we will use a simulated dataset to appreciate the effect of the
 The dataset is simulated from three different normal distributions. The default expression values for each probeset is randomly generated from a normal distribution of mean=7 and sd=0.6. The probesets 1 to 100 have specific expression values for the conditions 10, 20 and 30 coming from a normal distribution of mean=11 and sd=0.5. The probesets 200 to 300 have specific expression values for the conditions 9, 18 and 27 coming from a normale distribution of mean=13 and sd=0.4. We will change the parameter \emph{mlk.2} and \emph{rsd.2} to improve the specific detection (detecting the two types of specific behavior) starting with the default parameters. (The following code is present the \emph{SpeCond.R} file available on the Bioconductor package page.)\\
 \\
 Load the simulated dataset:
-<<echo=t, eval=t>>=
+<<echo=TRUE, eval=TRUE>>=
 data(simulatedSpeCondData)
 @
 Perform the first analysis using the default parameters:
-<<echo=t, eval=t>>=
+<<echo=TRUE, eval=TRUE>>=
 generalResult_S1=SpeCond(simulatedSpeCondData, param.detection=NULL,
   multitest.correction.method="BY", prefix.file="S1", print.hist.pv=TRUE,
   fit1=NULL, fit2=NULL, specificOutlierStep1=NULL)
@@ -387,12 +387,12 @@ We open \emph{S1\_simulatedSpeCondData\_results.html} and \emph{S1\_index\_simul
 Looking at the first results, only few probeset are detected as specific. If you look at the gene result pages you can observe that the \emph{mlk} value of the Step2 in particular is too high as the Normal 2 is still part of the null distribution whereas it can be consider as separated from the Normal 1. As a consequence we change the \emph{mlk.2} parameter to 10. Additionally we are using here the result of the fitting from the first detection as described in the Stepwise analysis paragraph.\\
 \\
 Change the parameter:
-<<echo=t, eval=t>>=
+<<echo=TRUE, eval=TRUE>>=
 param.detection10=createParameterMatrix(param.detection=param.detection, mlk.2=10)
 param.detection10
 @
 Perform the analysis changing the prefix value:
-<<echo=t, eval=t>>=
+<<echo=TRUE, eval=TRUE>>=
 generalResult_S2=SpeCond(simulatedSpeCondData, param.detection=param.detection10,
   multitest.correction.method="BY", prefix.file="S2", print.hist.pv=TRUE,
   fit1=generalResult_S1$fit1, fit2=generalResult_S1$fit2, 
@@ -412,13 +412,13 @@ getFullHtmlSpeCondResult(L.specific.result=specificResult_S2$L.specific.result,
 Looking at \emph{S2\_simulatedSpeCondData\_results.html} and \emph{S2\_index\_simulatedSpeCondData.html} files we observe that the detection improves but we are still missing some specific probesets with ids between 1 and 100 and more importantly we do not yet detect several specific probe with ids between 200 and 300 for which their specific values are more spread than the core of the expression values. To detect them we decrease \emph{mlk.2} and increase \emph{rsd.2} to 8 and to 0.3 respectively.\\
 \\
 Change the parameter:
-<<echo=t, eval=t>>=
+<<echo=TRUE, eval=TRUE>>=
 param.detection8_0.3=createParameterMatrix(param.detection=param.detection, 
   mlk.2=8, rsd.2=0.3)
 param.detection8_0.3
 @ 
 Perform the analysis changing the prefix value:
-<<echo=t, eval=t>>=
+<<echo=TRUE, eval=TRUE>>=
 generalResult_S3=SpeCond(simulatedSpeCondData, param.detection=param.detection8_0.3,
   multitest.correction.method="BY", prefix.file="S3", print.hist.pv=TRUE, 
   fit1=generalResult_S1$fit1, fit2=generalResult_S1$fit2,
@@ -433,7 +433,7 @@ getFullHtmlSpeCondResult(L.specific.result=specificResult_S3$L.specific.result,
   page.title="Condition specific results mlk 8, rsd 0.3", prefix.file="S3", 
   sort.condition="all",gene.page.info=genePageInfo_S3)
 @ 
-<<echo=f, eval=t>>=
+<<echo=FALSE, eval=TRUE>>=
 setwd(oldir)
 @
 Looking at \emph{S3\_simulatedSpeCondData\_results.html} and \emph{S3\_index\_simulatedSpeCondData.html} files we observe that the detection has largely improved. Change the \emph{gene.html.ids} or \emph{gene.html} values to generate different HTML pages and keep improving the detection results.
@@ -441,12 +441,12 @@ Looking at \emph{S3\_simulatedSpeCondData\_results.html} and \emph{S3\_index\_si
 % These are some little tricks mainly for people not very familiar with R that can help you during the analysis.
 % \subsection*{Save your data!}
 The fitting of the normal component using mclust can be done only once, in each of the steps of the procedure, as a consequence it is beneficial to save the fitting results as shown below. 
-<<echo=t, eval=t>>=
+<<echo=TRUE, eval=TRUE>>=
 save(fit1,file="fit1.RData")
 ## load("fit1.RData")
 @
 The parameter effect can be evaluated separately for the two steps. Saving the outliers detected by the first steps allows to test only the effect of the second set of parameters.
-<<echo=t, eval=t>>=
+<<echo=TRUE, eval=TRUE>>=
 save(specificOutlierStep1,file="specificOutlierStep1.RData")
 ## load("specificStep1.RData")
 save(fit2,file="fit2.RData")
