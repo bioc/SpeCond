@@ -1,6 +1,6 @@
 Package: SpeCond
 Title: Condition specific detection from expression data
-Version: 1.7.1
+Version: 1.8.0
 Author: Florence Cavalli
 Maintainer: Florence Cavalli <florence@ebi.ac.uk>
 Date: 2009-10-13
